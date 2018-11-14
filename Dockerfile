@@ -3,7 +3,15 @@
 # Docker file to build python/R data-science platform on top of ubtuntu 18.04
 
 FROM ubuntu:18.04
-RUN apt-get update && apt-get -y install \
+
+# r (actually the dependency tzdata) will ask for your timezone. Suppress it and link localtime to UTC.
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get -y install tzdata
+RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+# install the rest of our packages
+RUN apt-get -y install \
     liblapack-dev \
     libatlas-base-dev \
     gfortran \
@@ -15,11 +23,7 @@ RUN apt-get update && apt-get -y install \
     python3-pip \
     python3-skimage \
     python3-pyproj
-# r (actually the dependency tzdata) will ask for your timezone. Suppress it and link localtime to UTC.
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get -y install tzdata
-RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
-RUN dpkg-reconfigure --frontend noninteractive tzdata
+
 
 # Now install R
 RUN apt-get -y install \
