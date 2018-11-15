@@ -24,7 +24,9 @@ RUN apt-get -y install \
     python3-skimage \
     python3-pyproj \
     r-base-dev \
-    r-base
+    r-base \
+    libgeos-3.6.2 \
+    libgeos-dev
 
 # update pip and install python packages
 RUN pip3 install --upgrade pip
