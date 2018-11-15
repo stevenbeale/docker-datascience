@@ -22,11 +22,7 @@ RUN apt-get -y install \
     wget \
     python3-pip \
     python3-skimage \
-    python3-pyproj
-
-
-# Now install R
-RUN apt-get -y install \
+    python3-pyproj \
     r-base-dev \
     r-base
 
@@ -54,7 +50,7 @@ RUN pip3 install --no-cache-dir \
 ENV LD_LIBRARY_PATH "/usr/lib"
 
 # Proj4 Installation
-RUN wget http://download.osgeo.org/proj/proj-5.0.0.tar.gz \
+RUN wget -q http://download.osgeo.org/proj/proj-5.0.0.tar.gz \
         && tar xf proj-5.0.0.tar.gz \
         && cd proj-5.0.0 \
         && ./configure --prefix=/usr \
@@ -63,17 +59,5 @@ RUN wget http://download.osgeo.org/proj/proj-5.0.0.tar.gz \
         && cd .. \
         && rm -rf proj-5.0.0 \
         && rm proj-5.0.0.tar.gz
-
-# Basemap
-RUN wget https://github.com/matplotlib/basemap/archive/v1.1.0.tar.gz \
-        && tar xf v1.1.0.tar.gz \
-        && cd basemap-1.1.0/geos-3.3.3 \
-        && ./configure --prefix=/usr \
-        && make -j4 \
-        && make install \
-        && cd ../ \
-        && python setup.py install \
-        && cd / \
-        && rm -rf basemap-1.1.0
 
 
