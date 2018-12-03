@@ -26,7 +26,8 @@ RUN apt-get -y install \
     r-base-dev \
     r-base \
     libgeos-3.6.2 \
-    libgeos-dev
+    libgeos-dev \
+    cython3
 
 # update pip and install python packages
 RUN pip3 install --upgrade pip
@@ -46,8 +47,7 @@ RUN pip3 install --no-cache-dir \
     requests \
     awscli \
     boto3 \
-    Pillow \
-    metpy 
+    Pillow 
 
 ENV LD_LIBRARY_PATH "/usr/lib"
 
@@ -62,4 +62,7 @@ RUN wget -q http://download.osgeo.org/proj/proj-5.0.0.tar.gz \
         && rm -rf proj-5.0.0 \
         && rm proj-5.0.0.tar.gz
 
+#Install R packages
+ADD R_packages.R /Install_Packages.R
+RUN Rscript /Install_Packages.R
 

@@ -1,0 +1,10 @@
+install.packages('NADA')
+install.packages('ggplot2')
+install.packages('Hmisc')
+install.packages('gstat')
+install.packages('sp')
+install.packages('maptools')
+install.packages('rgeos')
+install.packages('agricolae')
+install.packages('vegan')
+
