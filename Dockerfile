@@ -30,7 +30,7 @@ RUN apt-get -y install \
     libgeos-3.6.2 \
     libgeos-dev \
     cython3 \
-    libbssl-dev \
+    libssl-dev \
     libxml2-dev \
     graphviz
 
