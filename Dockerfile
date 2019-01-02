@@ -12,6 +12,8 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # install the rest of our packages
 RUN apt-get -y install \
+    libopenblas-dev \
+    build-essential \
     liblapack-dev \
     libatlas-base-dev \
     gfortran \
@@ -27,7 +29,11 @@ RUN apt-get -y install \
     r-base \
     libgeos-3.6.2 \
     libgeos-dev \
-    cython3
+    cython3 \
+    libbssl-dev \
+    libxml2-dev \
+    graphviz
+
 
 # update pip and install python packages
 RUN pip3 install --upgrade pip
@@ -47,7 +53,11 @@ RUN pip3 install --no-cache-dir \
     requests \
     awscli \
     boto3 \
-    Pillow 
+    Pillow \
+    tensorflow \
+    theano \
+    keras==1.2.2 \
+    graphviz
 
 ENV LD_LIBRARY_PATH "/usr/lib"
 
