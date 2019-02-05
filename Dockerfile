@@ -72,6 +72,9 @@ RUN wget -q http://download.osgeo.org/proj/proj-5.0.0.tar.gz \
         && rm -rf proj-5.0.0 \
         && rm proj-5.0.0.tar.gz
 
+#gdal
+RUN apt-get -y install libgdal-dev
+
 #Install R packages
 ADD R_packages.R /Install_Packages.R
 RUN Rscript /Install_Packages.R
